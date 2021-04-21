@@ -16,14 +16,19 @@
   export default {
     data() {
       return {
-        article: {
-        }
+        article: {}
       }
     },
     methods: {
       saveArticle() {
-        console.log(this.article);
-      }
+        this.$http.post('articles',this.article).then(()=>{
+            this.$message({
+                message: '文章创建成功',
+                type: 'success'
+            })
+            this.$router.push('/articles/index')
+        }) 
+        }
     }
   }
 </script>

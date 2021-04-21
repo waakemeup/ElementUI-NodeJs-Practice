@@ -24,6 +24,12 @@ app.post('/api/articles', async(req, res) => {
     res.send(article)
 })
 
+// 文章列表
+app.get('/api/articles', async(req, res) => {
+    const articles = await Article.find()
+    res.send(articles)
+})
+
 app.listen(3003, () => {
     console.log("http://localhost:3003/");
     console.log("app is listening at port 3003");
