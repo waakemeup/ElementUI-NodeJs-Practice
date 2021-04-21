@@ -25,17 +25,26 @@
       }
     },
     methods:{
-        edit(){
-
+        fetch(){
+            this.$http.get('articles').then(res=>{
+              this.articles=res.data
+            })
         },
-        remove(){
-
+        edit(id){
+            this.$router.push(`/articles/${id}/edit`)
+        },
+        remove(id){
+            this.$http.delete(`articles/${id}`).then(()=>{
+                this.$message({
+                message: '文章删除成功',
+                type: 'success'
+            })
+            this.fetch()
+            })
         }
     },
     created(){
-      this.$http.get('articles').then(res=>{
-          this.articles=res.data
-      })
+      this.fetch()
     }
   };
 </script>
